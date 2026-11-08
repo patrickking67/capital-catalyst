@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Investments{% endblock %}
+{% block description %}Investment holdings you record yourself. Not built yet in Capital Catalyst 1.0.{% endblock %}
+{% block content %}
+<h1>Investments</h1>
+<p class="lede">This page will list the holdings you record yourself: the asset name and how much of it you hold. It will not value them or suggest trades.</p>
+<table class="sheet-table">
+    <caption>Holdings</caption>
+    <thead>
+        <tr><th scope="col">Asset</th><th scope="col" class="num">Quantity</th></tr>
+    </thead>
+    <tbody>
+        <tr><td colspan="2" class="empty">No holdings yet. Recording holdings is not built in version 1.0.</td></tr>
+    </tbody>
+</table>
+{% endblock %}

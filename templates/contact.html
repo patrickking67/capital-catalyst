@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Contact{% endblock %}
+{% block description %}How to report a bug, ask a question or report a security issue for Capital Catalyst.{% endblock %}
+{% block content %}
+<h1>Contact</h1>
+<p class="lede">Capital Catalyst is maintained on GitHub, so that is the place to reach the maintainer.</p>
+<dl class="ledger">
+    <div class="ledger-row">
+        <dt>Bugs and questions</dt>
+        <span class="fill" aria-hidden="true"></span>
+        <dd><a href="https://github.com/patrickking67/capital-catalyst/issues">Open an issue</a></dd>
+    </div>
+    <div class="ledger-row">
+        <dt>Security issues</dt>
+        <span class="fill" aria-hidden="true"></span>
+        <dd><a href="https://github.com/patrickking67/capital-catalyst/security/advisories/new">Report privately</a></dd>
+    </div>
+</dl>
+<p class="note">Please do not put account numbers, balances or other personal financial details in an issue.</p>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block content %}
+<h1 class="entry">
+    <span class="entry-label">Capital Catalyst</span>
+    <span class="fill" aria-hidden="true"></span>
+    <span class="entry-value">Version 1.0</span>
+</h1>
+<p class="lede">An early Flask app for keeping track of your own accounts and investments. Right now it is a scaffold: the pages and the data model exist, and the screens that use them do not yet.</p>
+
+<h2>Where it stands</h2>
+<dl class="ledger">
+    <div class="ledger-row">
+        <dt>Home, Accounts, Investments and Contact pages</dt>
+        <span class="fill" aria-hidden="true"></span>
+        <dd class="done">Built</dd>
+    </div>
+    <div class="ledger-row">
+        <dt>Data model for users, transactions and holdings</dt>
+        <span class="fill" aria-hidden="true"></span>
+        <dd class="done">Built</dd>
+    </div>
+    <div class="ledger-row">
+        <dt>Sign in</dt>
+        <span class="fill" aria-hidden="true"></span>
+        <dd class="todo">Not built</dd>
+    </div>
+    <div class="ledger-row">
+        <dt>Recording transactions</dt>
+        <span class="fill" aria-hidden="true"></span>
+        <dd class="todo">Not built</dd>
+    </div>
+    <div class="ledger-row">
+        <dt>Recording investment holdings</dt>
+        <span class="fill" aria-hidden="true"></span>
+        <dd class="todo">Not built</dd>
+    </div>
+</dl>
+<p class="note">The app does not connect to any bank or broker, and it does not fetch prices.</p>
+{% endblock %}

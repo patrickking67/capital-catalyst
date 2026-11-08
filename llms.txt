@@ -1,0 +1,22 @@
+# Capital Catalyst
+
+> An early Flask scaffold for a personal finance app. It has four pages (Home, Accounts, Investments, Contact) and a Flask-SQLAlchemy data model for users, transactions and investment holdings, but no sign in and no screens that read or write data yet. Not financial advice: it does not connect to banks or brokers, fetch prices or make recommendations. Python 3.11+, MIT license.
+
+## Docs
+
+- [README](https://github.com/patrickking67/capital-catalyst/blob/main/README.md): what works, quickstart, configuration, architecture
+- [AGENTS.md](https://github.com/patrickking67/capital-catalyst/blob/main/AGENTS.md): commands, conventions and safety rules for coding agents
+- [CONTRIBUTING](https://github.com/patrickking67/capital-catalyst/blob/main/CONTRIBUTING.md): setup, branches, commits, PR checklist
+- [CHANGELOG](https://github.com/patrickking67/capital-catalyst/blob/main/CHANGELOG.md): release history
+- [SECURITY](https://github.com/patrickking67/capital-catalyst/blob/main/SECURITY.md): how to report a vulnerability
+
+## Code
+
+- [app.py](https://github.com/patrickking67/capital-catalyst/blob/main/app.py): app factory, config, routes, error pages, security headers
+- [models.py](https://github.com/patrickking67/capital-catalyst/blob/main/models.py): User, Transaction and Investment models with validation
+- [tests](https://github.com/patrickking67/capital-catalyst/tree/main/tests): pytest suite
+- [scripts/check.sh](https://github.com/patrickking67/capital-catalyst/blob/main/scripts/check.sh): the one check command (ruff and pytest)
+
+## Optional
+
+- [LICENSE](https://github.com/patrickking67/capital-catalyst/blob/main/LICENSE): MIT

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ heading }}{% endblock %}
+{% block description %}{{ message }}{% endblock %}
+{% block content %}
+<h1 class="entry">
+    <span class="entry-label">{{ heading }}</span>
+    <span class="fill" aria-hidden="true"></span>
+    <span class="entry-value todo">{{ code }}</span>
+</h1>
+<p class="lede">{{ message }}</p>
+<p><a href="{{ url_for('home') }}">Go to the home page</a></p>
+{% endblock %}

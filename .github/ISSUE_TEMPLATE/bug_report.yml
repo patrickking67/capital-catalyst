@@ -1,0 +1,34 @@
+name: Bug report
+description: Something in Capital Catalyst does not work as described.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include account numbers, balances or other personal financial details. Report security issues privately through the Security tab instead."
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did and what you saw.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Run scripts/dev.sh
+        2. Open http://127.0.0.1:4108/
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Python version and OS
+      placeholder: Python 3.12 on macOS 15
