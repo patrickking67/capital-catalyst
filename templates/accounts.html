@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Accounts{% endblock %}
+{% block description %}Transactions grouped by account. Not built yet in Capital Catalyst 1.0.{% endblock %}
+{% block content %}
+<h1>Accounts</h1>
+<p class="lede">This page will list the transactions you record against each of your accounts, such as a checking or savings account.</p>
+<table class="sheet-table">
+    <caption>Transactions</caption>
+    <thead>
+        <tr><th scope="col">Account</th><th scope="col" class="num">Amount</th></tr>
+    </thead>
+    <tbody>
+        <tr><td colspan="2" class="empty">No transactions yet. Recording transactions is not built in version 1.0.</td></tr>
+    </tbody>
+</table>
+{% endblock %}

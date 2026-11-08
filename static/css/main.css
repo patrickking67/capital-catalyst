@@ -1,14 +1,338 @@
+/* Capital Catalyst: a ledger-sheet look. Green ink for what is done,
+   red ink for what is not, the way an account book marks credit and debit. */
+
+:root {
+    --paper: #f7faf6;
+    --sheet: #ffffff;
+    --ink: #1b2420;
+    --muted: #4f5b55;
+    --green: #1e5c44;
+    --red: #b2453b;
+    --rule: #c9d8cc;
+    --rule-strong: #8fa597;
+    --margin-rule: #e3a59d;
+    --focus: #1e5c44;
+
+    --font: "Avenir Next", Avenir, "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
+    --step-0: 1.0625rem;
+    --step-1: 1.25rem;
+    --step-2: 1.5625rem;
+    --step-3: clamp(1.9rem, 1.2rem + 3.6vw, 3.05rem);
+    --gutter: 1rem;
+    --measure: 38rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper: #111815;
+        --sheet: #17201c;
+        --ink: #e4ece6;
+        --muted: #a9b8ae;
+        --green: #84c9a6;
+        --red: #ec9488;
+        --rule: #2d3a33;
+        --rule-strong: #5b6e62;
+        --margin-rule: #7a3d36;
+        --focus: #84c9a6;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    font-variant-numeric: tabular-nums;
 }
 
-nav {
-    background-color: #f8f9fa;
-    padding: 1em;
+a {
+    color: var(--green);
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
 }
 
-nav a {
-    margin-right: 1em;
+a:hover {
+    text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+main:focus {
+    outline: none;
+}
+
+.skip-link {
+    position: absolute;
+    left: var(--gutter);
+    top: -4rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--sheet);
+    color: var(--green);
+    z-index: 10;
+}
+
+.skip-link:focus {
+    top: 0.75rem;
+}
+
+/* Header */
+
+.site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 1.25rem var(--gutter);
+}
+
+.brand {
+    color: var(--ink);
+    font-weight: 600;
+    letter-spacing: 0.01em;
     text-decoration: none;
-    color: #333;
+}
+
+.site-header ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.site-header nav a {
+    color: var(--muted);
+    text-decoration: none;
+    padding-bottom: 0.15rem;
+    border-bottom: 2px solid transparent;
+}
+
+.site-header nav a:hover {
+    color: var(--ink);
+}
+
+.site-header nav a[aria-current="page"] {
+    color: var(--ink);
+    border-bottom-color: var(--green);
+}
+
+/* The sheet: a page of account-book paper with a red double margin rule. */
+
+.sheet {
+    display: block;
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 2.5rem var(--gutter) 3rem calc(var(--gutter) + 1.25rem);
+    background: var(--sheet);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background-image: linear-gradient(
+        to right,
+        transparent calc(var(--gutter) - 1px),
+        var(--margin-rule) calc(var(--gutter) - 1px),
+        var(--margin-rule) var(--gutter),
+        transparent var(--gutter),
+        transparent calc(var(--gutter) + 3px),
+        var(--margin-rule) calc(var(--gutter) + 3px),
+        var(--margin-rule) calc(var(--gutter) + 4px),
+        transparent calc(var(--gutter) + 4px)
+    );
+}
+
+@media (min-width: 40rem) {
+    :root {
+        --gutter: 2rem;
+    }
+
+    .sheet {
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+    }
+}
+
+h1,
+h2 {
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: var(--step-3);
+    margin: 0 0 1rem;
+    letter-spacing: -0.01em;
+}
+
+h2 {
+    font-size: var(--step-1);
+    margin: 2.5rem 0 0.75rem;
+}
+
+p {
+    margin: 0 0 1rem;
+    max-width: var(--measure);
+}
+
+.lede {
+    font-size: var(--step-1);
+    line-height: 1.5;
+    color: var(--ink);
+}
+
+.note {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 1.5rem;
+}
+
+/* Ledger entries: label, dot leader, value. */
+
+.entry,
+.ledger-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+}
+
+.fill {
+    flex: 1 1 1.5rem;
+    min-width: 1.5rem;
+    border-bottom: 2px dotted var(--rule-strong);
+}
+
+.entry .fill {
+    border-bottom-width: 3px;
+    transform: translateY(-0.25em);
+}
+
+@media (max-width: 30rem) {
+    .entry {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .entry .fill {
+        display: none;
+    }
+}
+
+.entry-value {
+    flex: none;
+    font-size: var(--step-1);
+    font-weight: 500;
+    color: var(--green);
+    white-space: nowrap;
+}
+
+.ledger {
+    max-width: 44rem;
+    margin: 0;
+    border-top: 1px solid var(--rule);
+}
+
+.ledger-row {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--rule);
+}
+
+.ledger dt {
+    flex: 0 1 auto;
+}
+
+.ledger dd {
+    flex: none;
+    margin: 0;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.done {
+    color: var(--green);
+}
+
+.todo,
+.entry-value.todo {
+    color: var(--red);
+}
+
+/* Empty ledger tables. */
+
+.sheet-table {
+    width: 100%;
+    max-width: 44rem;
+    margin-top: 1.5rem;
+    border-collapse: collapse;
+}
+
+.sheet-table caption {
+    text-align: left;
+    font-size: var(--step-1);
+    font-weight: 600;
+    padding-bottom: 0.75rem;
+}
+
+.sheet-table th,
+.sheet-table td {
+    padding: 0.6rem 0.5rem 0.6rem 0;
+    text-align: left;
+    border-bottom: 1px solid var(--rule);
+}
+
+.sheet-table th {
+    font-weight: 600;
+    color: var(--muted);
+    border-bottom: 2px solid var(--rule-strong);
+}
+
+.sheet-table .num {
+    text-align: right;
+    padding-right: 0;
+}
+
+.sheet-table .empty {
+    padding: 1.5rem 0;
+    color: var(--muted);
+}
+
+/* Footer */
+
+.site-footer {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 1.5rem var(--gutter) 2.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.site-footer p {
+    max-width: 44rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        animation: none !important;
+        scroll-behavior: auto !important;
+    }
 }
