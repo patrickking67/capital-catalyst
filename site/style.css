@@ -1,0 +1,58 @@
+/* Ledger-sheet look, matching the app. System fonts, no scripts, no external requests. */
+:root {
+    --paper: #f7faf6;
+    --sheet: #ffffff;
+    --ink: #1b2420;
+    --muted: #4f5b55;
+    --green: #1e5c44;
+    --red: #b2453b;
+    --rule: #c9d8cc;
+    --font: "Avenir Next", Avenir, "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper: #111815;
+        --sheet: #17201c;
+        --ink: #e4ece6;
+        --muted: #a9b8ae;
+        --green: #84c9a6;
+        --red: #ec9488;
+        --rule: #2d3a33;
+    }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 1.0625rem/1.6 var(--font); }
+.wrap { width: min(100% - 2rem, 48rem); margin-inline: auto; }
+a { color: var(--green); text-underline-offset: 0.18em; }
+:focus-visible { outline: 3px solid var(--green); outline-offset: 2px; }
+
+.skip-link { position: absolute; left: 1rem; top: -3rem; padding: 0.5rem 0.75rem; background: var(--sheet); color: var(--ink); z-index: 10; }
+.skip-link:focus { top: 1rem; }
+
+.banner { margin: 0; padding: 0.6rem 1rem; text-align: center; background: var(--green); color: #fff; font-size: 0.95rem; }
+@media (prefers-color-scheme: dark) { .banner { background: #1f3a2d; color: #dff2e6; } }
+
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem 1.5rem; padding-block: 1rem; }
+.wordmark { font-weight: 800; font-size: 1.25rem; }
+.top nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+.top nav a { font-weight: 600; }
+
+.hero { padding-block: 2.5rem 1rem; border-bottom: 2px solid var(--rule); }
+h1 { font-size: clamp(1.9rem, 1.2rem + 3.6vw, 3.05rem); line-height: 1.12; margin: 0 0 1rem; max-width: 16ch; }
+h2 { font-size: 1.5rem; margin: 2.25rem 0 0.75rem; }
+.lede { font-size: 1.2rem; color: var(--muted); max-width: 38rem; }
+
+.ledger { margin: 0; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; }
+.ledger div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 1rem; border-bottom: 1px dotted var(--rule); }
+.ledger div:last-child { border-bottom: 0; }
+.ledger dt { margin: 0; }
+.ledger dd { margin: 0; font-weight: 700; white-space: nowrap; }
+.done { color: var(--green); }
+.todo { color: var(--red); }
+
+pre { overflow-x: auto; padding: 1rem; background: var(--sheet); border: 1px solid var(--rule); border-radius: 6px; font-size: 0.9375rem; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.plain { padding-left: 1.2rem; }
+.foot { margin-block: 3rem 2rem; padding-top: 1rem; border-top: 2px solid var(--rule); color: var(--muted); font-size: 0.95rem; }
