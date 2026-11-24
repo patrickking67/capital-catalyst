@@ -2,8 +2,8 @@ import pytest
 
 PAGES = {
     "/": "Where it stands",
-    "/accounts": "No transactions yet",
-    "/investments": "No holdings yet",
+    "/accounts": "add-transaction",
+    "/investments": "add-holding",
     "/contact": "Open an issue",
 }
 

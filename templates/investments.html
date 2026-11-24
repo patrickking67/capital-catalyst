@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Investments{% endblock %}
-{% block description %}Investment holdings you record yourself. Not built yet in Capital Catalyst 1.0.{% endblock %}
+{% block description %}Investment holdings you record yourself. Available from the command line only; no web screen yet.{% endblock %}
 {% block content %}
 <h1>Investments</h1>
 <p class="lede">This page will list the holdings you record yourself: the asset name and how much of it you hold. It will not value them or suggest trades.</p>
@@ -10,7 +10,7 @@
         <tr><th scope="col">Asset</th><th scope="col" class="num">Quantity</th></tr>
     </thead>
     <tbody>
-        <tr><td colspan="2" class="empty">No holdings yet. Recording holdings is not built in version 1.0.</td></tr>
+        <tr><td colspan="2" class="empty">This page does not read the database yet because there is no sign in. Record and view holdings with the command line: <code>flask --app app add-holding</code> and <code>flask --app app holdings</code>.</td></tr>
     </tbody>
 </table>
 {% endblock %}

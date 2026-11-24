@@ -6,8 +6,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Added
 
+- Static docs page in `site/` and a Pages deploy workflow.
 - App factory `create_app()` with configuration from `SECRET_KEY` and `DATABASE_URL`.
 - `flask init-db` command to create the database tables.
+- `create-user`, `add-transaction`, `add-holding`, `balances` and `holdings` commands, backed by a new `ledger.py` with exact-decimal totals.
 - `User.set_password` and `User.check_password`.
 - Validation for usernames, account and asset names, amounts and quantities.
 - Page content for Home, Accounts, Investments and Contact, with a not-financial-advice note.

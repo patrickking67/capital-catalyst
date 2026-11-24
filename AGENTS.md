@@ -16,11 +16,12 @@ A small Flask scaffold for a personal finance app. Four static pages, a Flask-SQ
 
 | Path | Purpose |
 | --- | --- |
-| `app.py` | `create_app()` factory, `load_config()`, routes, error handlers, security headers, `init-db` CLI |
+| `app.py` | `create_app()` factory, `load_config()`, routes, error handlers, security headers, `init-db` and ledger CLI commands |
+| `ledger.py` | Totals per account and per asset, plus the add helpers the CLI uses |
 | `models.py` | `db`, `User`, `Transaction`, `Investment`, validators |
 | `templates/` | `base.html` plus one template per page and `error.html` |
 | `static/css/main.css` | All styles (ledger look, light and dark) |
-| `tests/` | `conftest.py` fixtures, `test_config.py`, `test_models.py`, `test_routes.py` |
+| `tests/` | `conftest.py` fixtures, `test_config.py`, `test_models.py`, `test_ledger.py`, `test_cli.py`, `test_routes.py` |
 | `scripts/` | `setup.sh`, `dev.sh`, `check.sh` |
 | `.claude/launch.json` | Preview config: runs `scripts/dev.sh` on port 4108 |
 

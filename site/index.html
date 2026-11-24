@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Capital Catalyst: a small ledger for your own accounts</title>
+    <meta name="description" content="An early Flask app and command line for recording your own account transactions and holdings and adding them up with exact decimals. Not financial advice.">
+    <meta name="theme-color" content="#1e5c44">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Capital Catalyst: a small ledger for your own accounts">
+    <meta property="og:description" content="Record transactions and holdings from the command line and add them up with exact decimals. No bank links, no prices, no advice.">
+    <meta property="og:url" content="https://patrickking67.github.io/capital-catalyst/">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <p class="banner" role="note"><strong>Not financial advice.</strong> Capital Catalyst does not connect to banks or brokers, does not fetch prices and does not make recommendations. It adds up numbers you type in.</p>
+    <header class="wrap top">
+        <span class="wordmark">Capital Catalyst</span>
+        <nav aria-label="Main">
+            <a href="#status">Status</a>
+            <a href="#try">Try it</a>
+            <a href="#model">Data model</a>
+            <a href="https://github.com/patrickking67/capital-catalyst">Source</a>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section class="wrap hero" aria-labelledby="title">
+            <h1 id="title">A small ledger for your own accounts.</h1>
+            <p class="lede">An early Flask app. Record transactions and holdings from the command line and add them up with exact decimals, so cents never drift. Early means early: there is no sign in and no screen that shows your data yet.</p>
+        </section>
+
+        <section id="status" class="wrap" aria-labelledby="status-title">
+            <h2 id="status-title">Where it stands</h2>
+            <dl class="ledger">
+                <div><dt>Home, Accounts, Investments and Contact pages</dt><dd class="done">Built</dd></div>
+                <div><dt>Data model for users, transactions and holdings</dt><dd class="done">Built</dd></div>
+                <div><dt>Command line to record and total entries</dt><dd class="done">Built</dd></div>
+                <div><dt>Sign in</dt><dd class="todo">Not built</dd></div>
+                <div><dt>Screens that read the database</dt><dd class="todo">Not built</dd></div>
+            </dl>
+        </section>
+
+        <section id="try" class="wrap" aria-labelledby="try-title">
+            <h2 id="try-title">Try it</h2>
+            <p>Needs Python 3.11 or newer. The key below is a fake for local use; never reuse a real secret.</p>
+<pre tabindex="0"><code>git clone https://github.com/patrickking67/capital-catalyst.git
+cd capital-catalyst
+scripts/setup.sh
+export SECRET_KEY=dev-only-not-a-real-secret
+
+flask --app app init-db
+flask --app app create-user alex             # prompts for a password
+flask --app app add-transaction alex Checking 1200.50
+flask --app app add-transaction alex Checking -200
+flask --app app add-transaction alex Savings 500
+flask --app app balances alex
+flask --app app add-holding alex "Index fund" 1.5
+flask --app app holdings alex</code></pre>
+            <p>Output:</p>
+<pre tabindex="0"><code>Checking: 1,000.50
+Savings: 500.00
+Index fund: 1.5</code></pre>
+            <p>Bad input is refused and nothing is saved. An amount such as <code>1.005</code> fails with <code>amount must have at most 2 decimal places</code>. Holdings are quantities only. The app never says what they are worth.</p>
+        </section>
+
+        <section id="model" class="wrap" aria-labelledby="model-title">
+            <h2 id="model-title">Data model</h2>
+            <ul class="plain">
+                <li><strong>User</strong>: username (3 to 64 letters, digits, dot, dash or underscore) and a password stored as a Werkzeug hash, never in plain text.</li>
+                <li><strong>Transaction</strong>: account name and an amount with at most 2 decimal places. Negative means money out.</li>
+                <li><strong>Investment</strong>: asset name and a quantity above zero with at most 8 decimal places.</li>
+            </ul>
+            <p>Amounts and quantities are stored as exact decimals, not floats. The app refuses to start without a <code>SECRET_KEY</code>, and responses carry a strict Content Security Policy.</p>
+        </section>
+    </main>
+
+    <footer class="wrap foot">
+        <p><strong>Not financial advice.</strong> MIT licensed. <a href="https://github.com/patrickking67/capital-catalyst">Source on GitHub</a>.</p>
+    </footer>
+</body>
+</html>
