@@ -5,7 +5,7 @@
 
 An early Flask app for keeping track of your own accounts and investments. The pages and the data model exist, you can record and total entries from the command line, and the web screens that show them are not built yet.
 
-There is no live deployment.
+There is no hosted app. A static docs page with the status, a command line walkthrough and the data model is at https://patrickking67.github.io/capital-catalyst/ (it holds no data and runs no code).
 
 > Not financial advice. Capital Catalyst does not connect to banks or brokers, does not fetch prices and does not make recommendations. Anything it shows is data you entered yourself.
 
@@ -75,6 +75,7 @@ SECRET_KEY=dev-only-not-a-real-secret .venv/bin/flask --app app init-db
 | `templates/` | `base.html` layout, one template per page, `error.html` |
 | `static/` | `css/main.css` and `favicon.svg` |
 | `tests/` | pytest suite for config, models, ledger totals, CLI commands and routes |
+| `site/` | Static GitHub Pages docs page (HTML and CSS only) |
 | `scripts/` | `setup.sh`, `dev.sh`, `check.sh` |
 
 ## Tests
@@ -87,7 +88,7 @@ Runs `ruff check`, `ruff format --check` and `pytest`. CI runs the same script o
 
 ## Deploy
 
-Not deployed. To run it behind a WSGI server, set `SECRET_KEY` (and `DATABASE_URL` if not using SQLite) and point the server at `app:create_app()`. No WSGI server is pinned in `requirements.txt`.
+The app is not deployed; only `site/` is published to GitHub Pages by `.github/workflows/pages.yml`. To run it behind a WSGI server, set `SECRET_KEY` (and `DATABASE_URL` if not using SQLite) and point the server at `app:create_app()`. No WSGI server is pinned in `requirements.txt`.
 
 ## License
 
