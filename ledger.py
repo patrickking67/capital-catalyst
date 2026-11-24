@@ -1,6 +1,6 @@
-"""Read-only summaries of what a user has recorded. No prices, no valuation, no advice.
+"""Record entries and add up what a user has recorded. No prices, no valuation, no advice.
 
-Everything here adds up numbers the user entered. Amounts stay Decimal.
+Everything here works on numbers the user entered. Amounts stay Decimal.
 """
 
 from decimal import Decimal

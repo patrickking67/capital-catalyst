@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Accounts{% endblock %}
-{% block description %}Transactions grouped by account. Not built yet in Capital Catalyst 1.0.{% endblock %}
+{% block description %}Transactions grouped by account. Available from the command line only; no web screen yet.{% endblock %}
 {% block content %}
 <h1>Accounts</h1>
 <p class="lede">This page will list the transactions you record against each of your accounts, such as a checking or savings account.</p>
@@ -10,7 +10,7 @@
         <tr><th scope="col">Account</th><th scope="col" class="num">Amount</th></tr>
     </thead>
     <tbody>
-        <tr><td colspan="2" class="empty">No transactions yet. Recording transactions is not built in version 1.0.</td></tr>
+        <tr><td colspan="2" class="empty">This page does not read the database yet because there is no sign in. Record and view balances with the command line: <code>flask --app app add-transaction</code> and <code>flask --app app balances</code>.</td></tr>
     </tbody>
 </table>
 {% endblock %}
